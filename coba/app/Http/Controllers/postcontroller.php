@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class postcontroller extends Controller
 {
@@ -11,10 +12,13 @@ class postcontroller extends Controller
      */
     public function index()
     {
+        $db = Storage::get('db.txt');
+        $db = explode("\n",$db);
+        dd($db);
+
         $coba = [
-                'posts' => ["Puan jual tanah lagi!!!", 'Tahun ini ibu mega jual pual untuk yang kesekian kalinya'],
-                ["Cara jual tanah dengan mudah ala Bu Mega", "Tutorial jual tanah cepat laku ala Bu Mega ahli jual pulau"]
-                ];
+                'posts' => $db
+            ];
 
         return view('posts.index', $coba);
     }
